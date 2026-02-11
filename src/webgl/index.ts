@@ -261,9 +261,8 @@ export default function WebGL() {
 
       canvas.style.opacity = `${valMap(scroll, [1.25, 1.75], [1, 0])}`;
 
-      if (sizes.portraitOffset > 0.5)
-        computerGroup.rotation.z = valMap(scroll, [0, 1], [-Math.PI / 2, 0]);
-      else computerGroup.rotation.z = 0;
+      // Keep monitor vertical on all devices (no z-rotation)
+      computerGroup.rotation.z = 0;
 
       if (assists.crtMesh.morphTargetInfluences) {
         assists.crtMesh.morphTargetInfluences[0] = valMap(

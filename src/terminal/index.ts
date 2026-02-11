@@ -57,14 +57,10 @@ export default function Terminal(screenTextEngine: {
   textarea.addEventListener("input", onInput, false);
 
   canvas.addEventListener("pointerup", (ev) => {
-    if (ev.pointerType === "mouse") {
-      textarea.readOnly = false;
-      textarea.focus();
-      textarea.setSelectionRange(lastSelection, lastSelection);
-    } else {
-      textarea.readOnly = true;
-      textarea.blur();
-    }
+    // Allow both mouse and touch users to focus the textarea and show keyboard
+    textarea.readOnly = false;
+    textarea.focus();
+    textarea.setSelectionRange(lastSelection, lastSelection);
   });
   window.addEventListener("keypress", (e) => {
     if (
