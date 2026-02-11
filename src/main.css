@@ -7,11 +7,11 @@
 
 @font-face {
   font-family: public-pixel;
-  src: url("/fonts/public-pixel.woff");
+  src: url("../public/fonts/public-pixel.woff");
 }
 @font-face {
   font-family: chill;
-  src: url("/fonts/chill.woff");
+  src: url("../public/fonts/chill.woff");
 }
 
 * {

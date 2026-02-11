@@ -3,6 +3,8 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { mergeBufferGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 type Assists = {
   screenMesh: THREE.Mesh;
   computerMesh: THREE.Mesh;
@@ -70,10 +72,10 @@ function loadAssists(callback: (assists: Assists) => any) {
 
   // Fonts
   const fontLoader = new FontLoader(manager);
-  fontLoader.load("/fonts/public-pixel.json", (font) => {
+  fontLoader.load(`${BASE_URL}fonts/public-pixel.json`, (font) => {
     assists.publicPixelFont = font;
   });
-  fontLoader.load("/fonts/chill.json", (font) => {
+  fontLoader.load(`${BASE_URL}fonts/chill.json`, (font) => {
     assists.chillFont = font;
   });
 
@@ -81,13 +83,13 @@ function loadAssists(callback: (assists: Assists) => any) {
 
   // Texture
   const textureLoader = new THREE.TextureLoader(manager);
-  textureLoader.load("/textures/bake-quality-5.jpg", (tex) => {
+  textureLoader.load(`${BASE_URL}textures/bake-quality-5.jpg`, (tex) => {
     tex.flipY = false;
     tex.encoding = THREE.sRGBEncoding;
     assists.bakeTexture = tex;
   });
 
-  textureLoader.load("/textures/bake_floor-quality-3.jpg", (tex) => {
+  textureLoader.load(`${BASE_URL}textures/bake_floor-quality-3.jpg`, (tex) => {
     tex.flipY = false;
     tex.encoding = THREE.sRGBEncoding;
     assists.bakeFloorTexture = tex;
@@ -97,12 +99,12 @@ function loadAssists(callback: (assists: Assists) => any) {
 
   cubeTextureLoader.load(
     [
-      `/textures/environmentMap/px.jpg`,
-      `/textures/environmentMap/nx.jpg`,
-      `/textures/environmentMap/py.jpg`,
-      `/textures/environmentMap/ny.jpg`,
-      `/textures/environmentMap/pz.jpg`,
-      `/textures/environmentMap/nz.jpg`,
+      `${BASE_URL}textures/environmentMap/px.jpg`,
+      `${BASE_URL}textures/environmentMap/nx.jpg`,
+      `${BASE_URL}textures/environmentMap/py.jpg`,
+      `${BASE_URL}textures/environmentMap/ny.jpg`,
+      `${BASE_URL}textures/environmentMap/pz.jpg`,
+      `${BASE_URL}textures/environmentMap/nz.jpg`,
     ],
     (tex) => {
       assists.environmentMapTexture = tex;
@@ -111,7 +113,7 @@ function loadAssists(callback: (assists: Assists) => any) {
 
   // Mesh
   const gltfLoader = new GLTFLoader(manager);
-  gltfLoader.load("/models/Commodore710_33.5.glb", (gltf) => {
+  gltfLoader.load(`${BASE_URL}models/Commodore710_33.5.glb`, (gltf) => {
     assists.screenMesh = gltf.scene.children.find((m) => m.name === "Screen");
     assists.computerMesh = gltf.scene.children.find(
       (m) => m.name === "Computer"
